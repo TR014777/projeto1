@@ -3,12 +3,12 @@
     require_once "config.inc.php";
 
     $id = $_POST['id'];
-    $nome = $_POST['cliente'];
+    $nome = $_POST['nome'];
     $cidade = $_POST['cidade'];
     $estado = $_POST['estado'];
 
     $sql = "UPDATE clientes SET
-            cliente = '$nome',
+            nome = '$nome',
             cidade = '$cidade',
             estado = '$estado'
             WHERE id = '$id'";
@@ -17,8 +17,8 @@
 
     if($resultado){
         echo "Cadastro Alterado com sucesso!";
-        echo "<a href='?pg=admin_clientes'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=admin_clientes'>Voltar</a>";
     }else{
         echo "Houve um erro na alteração.";
-        echo "<a href='?pg=admin_clientes'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=admin_clientes'>Voltar</a>";
     }

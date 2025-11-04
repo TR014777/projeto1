@@ -1,29 +1,40 @@
-<p>
-    <a href="?pg=form_produtos">Cadastrar novo produto</a>
-</p>
+<div class="container-fluid mt-3">
+    <h2>Lista de Produtos</h2>
+    <hr>
+</div>
+<div class="container mt-3">
+    <table class="table table-light table-hover">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>Quantidade</th>
+            <th>Preço</th>
+            <th></th>
+            <th><a class="btn btn-primary" href="?pg=produtos/form_produtos">Cadastrar novo produto</a></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php
+            require_once "config.inc.php";
 
-<h2>Lista de Produtos</h2>
-<?php
+            $sql = "SELECT * FROM produtos ";
 
-    require_once "config.inc.php";
+            $resultado = mysqli_query($conexao, $sql);
 
-    $sql = "SELECT * FROM produtos ";
-
-    $resultado = mysqli_query($conexao, $sql);
-
-    if (mysqli_num_rows($resultado) > 0) {
-        while($dados = mysqli_fetch_array($resultado)) {
-
-            echo "<br>===============<br>";
-            echo "Id do Produto: $dados[id] | ";
-            echo "Produto: $dados[produto] | ";
-            echo "Qtd: $dados[quantidade] | ";
-            echo "Preço: $dados[preco] ";
-            echo " | <a href='?pg=form_produtos_alterar&id=$dados[id]'>Alterar</a>";
-            echo " | <a href='?pg=delete_produto&id=$dados[id]'>Excluir</a>";
-            echo "<br>============= <br>";
-        }
-    }else{
-        echo "<br><h2>Nenhum produto encontrado!</h2><br>";
-    }
-?>
+            while($dados = mysqli_fetch_array($resultado)) {
+        ?>
+        <tr>
+            <td><?=$dados['id']?></td>
+            <td><?=$dados['nome']?></td>
+            <td><?=$dados['quantidade']?></td>
+            <td><?=$dados['preco']?></td>
+            <td><a class="btn btn-secondary" href='?pg=produtos/form_produtos_alterar&id=<?=$dados['id']?>'>Alterar</a></td>
+            <td><a class="btn btn-secondary" href='?pg=produtos/delete_produtos&id=<?=$dados['id']?>'>Excluir</a></td>
+        </tr>
+        <?php
+            }
+        ?>
+        </tbody>
+    </table>
+</div>

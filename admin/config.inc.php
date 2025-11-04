@@ -14,7 +14,4 @@ $bd = mysqli_select_db($conexao, "projeto1");
 if (!$bd) {
     die("Banco de dados não encontrado!");
 }
-
-// Se chegou até aqui, deu tudo certo
-echo "Conexão com o banco 'projeto1' estabelecida com sucesso!";
 ?>

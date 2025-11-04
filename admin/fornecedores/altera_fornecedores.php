@@ -1,6 +1,6 @@
 <?php
 
-require_once "../config.inc.php";
+require_once "config.inc.php";
 
 $id = $_POST['id'];
 $nome = $_POST['nome'];
@@ -20,9 +20,9 @@ $resultado = mysqli_query($conexao, $sql);
 if ($resultado) {
     
     echo "<h2>Fornecedor alterado com sucesso!</h2>";
-    echo "<a href='?pg=admin_fornecedores'>Voltar</a>";
+    echo "<a class='btn btn-primary' href='?pg=fornecedores/admin_fornecedores'>Voltar</a>";
 }else {
     echo "<h2>Erro ao alterar fornecedor!</h2>";
-    echo "<a href='?pg=admin_fornecedores'>Voltar</a>";
+    echo "<a class='btn btn-primary' href='?pg=fornecedores/admin_fornecedores'>Voltar</a>";
 }
 ?>

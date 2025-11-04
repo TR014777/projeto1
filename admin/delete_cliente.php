@@ -9,8 +9,8 @@
 
     if($resultado){
         echo "<h2>Cliente excluído com sucesso!</h2>";
-        echo "<a href='?pg=admin_clientes'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=admin_clientes'>Voltar</a>";
     }else{
         echo "<h2>Erro ao excluir o cliente!</h2>";
-        echo "<a href='?pg=admin_clientes'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=admin_clientes'>Voltar</a>";
     }

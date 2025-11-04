@@ -9,8 +9,8 @@
 
     if($resultado){
         echo "<h2>produto excluído com sucesso!</h2>";
-        echo "<a href='?pg=admin_produtos'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=produtos/admin_produtos'>Voltar</a>";
     }else{
         echo "<h2>Erro ao excluir o produto!</h2>";
-        echo "<a href='?pg=admin_produtos'>Voltar</a>";
+        echo "<a class='btn btn-primary' href='?pg=produtos/admin_produtos'>Voltar</a>";
     }
