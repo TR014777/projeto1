@@ -1,5 +1,5 @@
 <p>
-    <a href="?pg=fornecedores/form_fornecedores">Cadastrar novo fornecedor</a>
+    <a href="?pg=form_fornecedores">Cadastrar novo fornecedor</a>
 </p>
 
 <h2>Lista de Fornecedores</h2>

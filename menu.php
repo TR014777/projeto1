@@ -16,6 +16,9 @@
             <li class="nav-item">
                 <a class="nav-link" href="?pg=faleconosco">Fale Conosco</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="?pg=fornecedores">Fornecedores</a>
+            </li>
         </ul>
     </div>
 </nav>

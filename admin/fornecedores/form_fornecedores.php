@@ -1,4 +1,4 @@
-<form action="?pg=fornecedores/cadastra_fornecedores" method="post">
+<form action="?pg=cadastra_fornecedores" method="post">
     <label>Nome do fornecedor:</label>
     <input type="text" name="nome" required>
 
