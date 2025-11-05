@@ -16,10 +16,10 @@ $sql_prod = "SELECT COUNT(*) AS total_produtos FROM produtos";
 $res_prod = mysqli_query($conexao, $sql_prod);
 $total_produtos = mysqli_fetch_assoc($res_prod)['total_produtos'] ?? 0;
 
-// Labels simulando meses ou períodos (exemplo de crescimento)
+// Labels simulando meses ou períodos para o gráfico
 /*$labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
 
-// Dados simulando crescimento (pode ser ajustado com base em registros reais)
+// Dados simulando crescimento para testes do gráfico
 $dados_clientes = [2, 4, 6, 8, 10, $total_clientes];
 $dados_produtos = [1, 2, 3, 5, 7, $total_produtos];
 $dados_fornecedores = [1, 1, 2, 3, 4, $total_fornecedores];
@@ -28,9 +28,8 @@ $dados_fornecedores = [1, 1, 2, 3, 4, $total_fornecedores];
 // Dados do gráfico
 $labels = ["Clientes", "Produtos", "Fornecedores"];
 $dados_clientes = [$total_clientes, $total_produtos, $total_fornecedores];
-$dados_produtos = [$total_produtos, $total_produtos, $total_produtos]; // opcional, manter estrutura
-$dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_fornecedores]; // opcional, manter estrutura
-?>
+$dados_produtos = [$total_produtos, $total_produtos, $total_produtos]; // criando mais dois arrays para o chartjs poder interpretar e criar as linhas do gráfico
+$dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_fornecedores];
 
 <div class="container mt-3">
   <h3 class="mb-4 text-center text-secondary">Dashboard</h3>
@@ -68,7 +67,7 @@ $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_forneced
   <!-- Gráfico-->
   <div class="card border-0 shadow-sm mb-5">
     <div class="card-body">
-      <h6 class="text-muted mb-3">Crescimento do Sistema</h6>
+      <h6 class="text-muted mb-3">Gráfico de Crescimento do Sistema</h6>
       <canvas id="graficoLinha" height="100"></canvas>
     </div>
   </div>
