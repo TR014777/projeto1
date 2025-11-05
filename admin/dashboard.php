@@ -30,6 +30,7 @@ $labels = ["Clientes", "Produtos", "Fornecedores"];
 $dados_clientes = [$total_clientes, $total_produtos, $total_fornecedores];
 $dados_produtos = [$total_produtos, $total_produtos, $total_produtos]; // criando mais dois arrays para o chartjs poder interpretar e criar as linhas do gráfico
 $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_fornecedores];
+?>
 
 <div class="container mt-3">
   <h3 class="mb-4 text-center text-secondary">Dashboard</h3>
