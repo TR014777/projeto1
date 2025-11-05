@@ -87,7 +87,7 @@ $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_forneced
   <div class="card border-0 shadow-sm mb-8 col-md-9">
     <div class="card-body">
       <h6 class="text-muted mb-3">Gráfico de Crescimento do Sistema</h6>
-      <canvas id="graficoLinha" height="100"></canvas>
+      <canvas id="graficoBarra" height="100"></canvas>
     </div>
   </div>
   
@@ -113,49 +113,71 @@ $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_forneced
 <!-- Chart.js-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
-const ctx = document.getElementById('graficoLinha').getContext('2d');
-
+const ctx = document.getElementById('graficoBarra').getContext('2d');
+// Gráfico de barras 
 new Chart(ctx, {
-  type: 'line', // Gráfico de linha
+  type: 'bar',
   data: {
     labels: <?= json_encode($labels) ?>,
     datasets: [
       {
         label: 'Clientes',
         data: <?= json_encode($dados_clientes) ?>,
+        backgroundColor: 'rgba(0, 123, 255, 0.7)',
         borderColor: '#007bff',
-        backgroundColor: 'rgba(0,123,255,0.3)',
-        tension: 0.4,
-        fill: true,
-        pointRadius: 5
+        borderWidth: 1,
+        borderRadius: 5
       },
       {
         label: 'Produtos',
         data: <?= json_encode($dados_produtos) ?>,
+        backgroundColor: 'rgba(40, 167, 69, 0.7)',
         borderColor: '#28a745',
-        backgroundColor: 'rgba(40,167,69,0.3)',
-        tension: 0.4,
-        fill: true,
-        pointRadius: 5
+        borderWidth: 1,
+        borderRadius: 5
       },
       {
         label: 'Fornecedores',
         data: <?= json_encode($dados_fornecedores) ?>,
+        backgroundColor: 'rgba(255, 193, 7, 0.8)',
         borderColor: '#ffc107',
-        backgroundColor: 'rgba(255,193,7,0.3)',
-        tension: 0.4,
-        fill: true,
-        pointRadius: 5
+        borderWidth: 1,
+        borderRadius: 5
       }
     ]
   },
   options: {
+    responsive: true,
     plugins: {
-      legend: { position: 'top' }
+      legend: {
+        position: 'bottom',
+        labels: {
+          color: '#555',
+          boxWidth: 14,
+          usePointStyle: true,
+          pointStyle: 'rectRounded'
+        }
+      },
+      title: {
+        display: true,
+        text: 'Crescimento de Clientes, Produtos e Fornecedores',
+        color: '#333',
+        font: {
+          size: 16,
+          weight: 'bold'
+        }
+      }
     },
     scales: {
-      x: { grid: { display: false } },
-      y: { beginAtZero: true, stacked: true, grid: { color: '#eee' } }
+      x: {
+        grid: { display: false },
+        ticks: { color: '#666' }
+      },
+      y: {
+        beginAtZero: true,
+        grid: { color: '#eee' },
+        ticks: { color: '#666' }
+      }
     }
   }
 });
