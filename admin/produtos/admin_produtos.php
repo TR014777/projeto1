@@ -29,8 +29,8 @@
             <td><?=$dados['nome']?></td>
             <td><?=$dados['quantidade']?></td>
             <td><?=$dados['preco']?></td>
-            <td><a class="btn btn-secondary" href='?pg=produtos/form_produtos_alterar&id=<?=$dados['id']?>'>Alterar</a></td>
-            <td><a class="btn btn-secondary" href='?pg=produtos/delete_produtos&id=<?=$dados['id']?>'>Excluir</a></td>
+            <td><a class="btn btn-secondary" href='?pg=produtos/form_produtos_alterar&id=<?=$dados["id"]?>'>Alterar</a>
+            <td><a class="btn btn-secondary" href='?pg=produtos/delete_produtos&id=<?=$dados["id"]?>'>Excluir</a></td>
         </tr>
         <?php
             }

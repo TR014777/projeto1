@@ -18,21 +18,22 @@ while ($fornecedor = mysqli_fetch_array($resultado)) {
     <hr>
 </div>
 <form action="?pg=fornecedores/altera_fornecedores" method="post">
+    <input type="hidden" name="id" value="<?=$id?>">
     <div class="mb-3">
         <label class="form-label">Nome do fornecedor:</label>
-        <input class="form-control" type="text" name="nome" placeholder="Digite o nome..">
+        <input class="form-control" type="text" name="nome" value="<?=$nome?>" placeholder="Digite o nome..">
     </div>
     <div class="mb-3">
         <label class="form-label">Empresa:</label>
-        <input class="form-control" type="text" name="nome" placeholder="Digite qual empresa..">
+        <input class="form-control" type="text" name="empresa" value="<?=$empresa?>" placeholder="Digite qual empresa..">
     </div>
     <div class="mb-3">
         <label class="form-label">Telefone:</label>
-        <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"placeholder="88 98888-8888">
+        <input class="form-control" type="phone" name="telefone" value="<?=$telefone?>" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"placeholder="88 98888-8888">
     </div>
     <div class="mb-3">
         <label class="form-label">Email:</label>
-        <input class="form-control" type="email" name="email" placeholder="Digite o email..">
+        <input class="form-control" type="email" name="email" value="<?=$email?>" placeholder="Digite o email..">
     </div>
     <input class="btn btn-primary" type="submit" value="Alterar">
     <a class="btn btn-secondary" href='?pg=fornecedores/admin_fornecedores'>Voltar</a>

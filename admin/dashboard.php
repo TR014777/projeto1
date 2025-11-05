@@ -16,6 +16,20 @@ $sql_prod = "SELECT COUNT(*) AS total_produtos FROM produtos";
 $res_prod = mysqli_query($conexao, $sql_prod);
 $total_produtos = mysqli_fetch_assoc($res_prod)['total_produtos'] ?? 0;
 
+// Total de estoque
+$sql = "SELECT nome, quantidade FROM produtos";
+$res = mysqli_query($conexao, $sql);
+
+$nomes_produtos = [];
+$quantidades_produtos = [];
+$total_estoque = 0;
+
+while ($row = mysqli_fetch_assoc($res)) {
+    $nomes_produtos[] = $row['nome'];
+    $quantidades_produtos[] = $row['quantidade'];
+    $total_estoque += $row['quantidade'];
+}
+
 // Labels simulando meses ou períodos para o gráfico
 /*$labels = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun"];
 
@@ -25,11 +39,14 @@ $dados_produtos = [1, 2, 3, 5, 7, $total_produtos];
 $dados_fornecedores = [1, 1, 2, 3, 4, $total_fornecedores];
 ?> */
 
+
 // Dados do gráfico
 $labels = ["Clientes", "Produtos", "Fornecedores"];
+
 $dados_clientes = [$total_clientes, $total_produtos, $total_fornecedores];
 $dados_produtos = [$total_produtos, $total_produtos, $total_produtos]; // criando mais dois arrays para o chartjs poder interpretar e criar as linhas do gráfico
 $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_fornecedores];
+
 ?>
 
 <div class="container mt-3">
@@ -58,21 +75,40 @@ $dados_fornecedores = [$total_fornecedores, $total_fornecedores, $total_forneced
     <div class="col-md-4 mb-3">
       <div class="card border-0 shadow-sm" style="background-color: #e8f0fe;">
         <div class="card-body py-3">
-          <h6 class="text-muted mb-1">Data Atual</h6>
-          <h4 class="fw-bold text-dark mb-0"><?= date('d/m/Y') ?></h4>
+          <h6 class="text-muted mb-1">Produtos</h6>
+          <h4 class="fw-bold text-dark mb-0"><?= $total_produtos ?></h4>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Gráfico-->
-  <div class="card border-0 shadow-sm mb-5">
+  <div class="row text-center mb-4">
+  <div class="card border-0 shadow-sm mb-8 col-md-9">
     <div class="card-body">
       <h6 class="text-muted mb-3">Gráfico de Crescimento do Sistema</h6>
       <canvas id="graficoLinha" height="100"></canvas>
     </div>
   </div>
+  
+  <div class="col-md-3">
+    <div class="card-body">
+      <h6 class="text-muted mb-3">Distribuição do Estoque por Produto</h6>
+      <canvas id="graficoEstoque" style="height: 30px; width: 30px;"></canvas>
+    </div>
+  </div>
+  <div class="col-md-4 mb-3">
+      <div class="card border-0 shadow-sm" style="background-color: #e8f0fe;">
+        <div class="card-body py-3">
+          <h6 class="text-muted mb-1">Data Atual</h6>
+          <h4 class="fw-bold text-dark mb-0"><?= date('d/m/Y') ?></h4>
+        </div>
+      </div>
+  </div>
+  </div>
 </div>
+
+
 
 <!-- Chart.js-->
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -122,5 +158,60 @@ new Chart(ctx, {
       y: { beginAtZero: true, stacked: true, grid: { color: '#eee' } }
     }
   }
+});
+
+const textoCentro = {
+  id: 'textoCentro',
+  afterDraw(chart, args, options) {
+    const {ctx, chartArea: {width, height}} = chart;
+    ctx.save();
+    ctx.font = 'bold 55px Arial';
+    ctx.fillStyle = '#333';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText(options.text, width / 2, height / 2);
+  }
+};
+
+const ctxEstoque = document.getElementById('graficoEstoque').getContext('2d');
+
+new Chart(ctxEstoque, {
+  type: 'doughnut',
+  data: {
+    labels: <?= json_encode($nomes_produtos) ?>,
+    datasets: [{
+      data: <?= json_encode($quantidades_produtos) ?>,
+      backgroundColor: [
+        'rgba(0,123,255,0.6)',
+        'rgba(40,167,69,0.6)',
+        'rgba(255,193,7,0.6)',
+        'rgba(255,99,132,0.6)',
+        'rgba(153,102,255,0.6)',
+        'rgba(255,159,64,0.6)',
+        'rgba(23,162,184,0.6)',
+        'rgba(111,66,193,0.6)',
+        'rgba(255,205,86,0.6)'
+      ],
+      borderColor: '#fff',
+      borderWidth: 2
+    }]
+  },
+  options: {
+    plugins: {
+      legend: { position: 'bottom' },
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            return `${context.label}: ${context.formattedValue} unidades`;
+          }
+        }
+      },
+      textoCentro: {
+        text: '<?= $total_estoque ?>'  // total no centro
+      }
+    },
+    cutout: '50%' // tamanho do buraco central
+  },
+  plugins: [textoCentro]
 });
 </script>

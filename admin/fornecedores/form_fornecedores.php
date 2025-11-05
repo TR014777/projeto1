@@ -9,11 +9,11 @@
     </div>
     <div class="mb-3">
         <label class="form-label">Empresa:</label>
-        <input class="form-control" type="text" name="nome" placeholder="Digite qual empresa..">
+        <input class="form-control" type="text" name="empresa" placeholder="Digite qual empresa..">
     </div>
     <div class="mb-3">
         <label class="form-label">Telefone:</label>
-        <input class="form-control" type="tel" id="phone" name="phone" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"placeholder="88 98888-8888">
+        <input class="form-control" type="tel" name="telefone" pattern="[0-9]{2} [0-9]{5}-[0-9]{4}"placeholder="88 98888-8888">
     </div>
     <div class="mb-3">
         <label class="form-label">Email:</label>

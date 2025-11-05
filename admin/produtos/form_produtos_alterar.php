@@ -17,18 +17,19 @@
     <hr>
 </div>
 <form action="?pg=produtos/altera_produtos" method="post">
+    <input type="hidden" name="id" value="<?=$id?>">
     <div class="mb-3">
         <label class="form-label">Nome do produto:</label>
-        <input class="form-control" type="text" name="nome" placeholder="Digite o nome..">
+        <input class="form-control" type="text" name="nome" value="<?=$nome?>" placeholder="Digite o nome..">
     </div>
     <div class="mb-3">
         <label class="form-label">Quantidade:</label>
-        <input class="form-control" type="number" name="quantidade" placeholder="---">
+        <input class="form-control" type="number" name="quantidade" value="<?=$quantidade?>" placeholder="---">
     </div>
     <div class="mb-3">
         <label class="form-label">Preço:</label>
-        <input class="form-control" type="number" name="preco" placeholder="0,00">
+        <input class="form-control" type="number" name="preco" value="<?=$preco?>" placeholder="0,00">
     </div>
-    <input class="btn btn-primary" type="submit" value="Cadastrar">
+    <input class="btn btn-primary" type="submit" value="Alterar">
     <a class="btn btn-secondary" href='?pg=produtos/admin_produtos'>Voltar</a>
 </form>

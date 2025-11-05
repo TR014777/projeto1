@@ -16,9 +16,9 @@
     $resultado = mysqli_query($conexao, $sql);
 
     if($resultado){
-        echo "Cadastro Alterado com sucesso!";
+        echo "<h2>Cadastro alterado com sucesso!</h2>";
         echo "<a class='btn btn-primary' href='?pg=produtos/admin_produtos'>Voltar</a>";
     }else{
-        echo "Houve um erro na alteração.";
+        echo "<h2>Houve um erro na alteração.</h2>";
         echo "<a class='btn btn-primary' href='?pg=produtos/admin_produtos'>Voltar</a>";
     }
